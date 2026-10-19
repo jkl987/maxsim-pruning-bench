@@ -1,0 +1,35 @@
+{
+  "scope": "Synthetic float64 correctness demo; not performance evidence",
+  "results": [
+    {
+      "threshold": 31.133539520023852,
+      "upper_violations": 0,
+      "false_survivors": 194,
+      "mean_slack": 2.4324714530962472,
+      "tie_rule": "survive at upper >= cutoff; mandatory items have truth > cutoff",
+      "levels": 2,
+      "state_bytes_per_doc": 8,
+      "documents": 256
+    },
+    {
+      "threshold": 31.133539520023852,
+      "upper_violations": 0,
+      "false_survivors": 177,
+      "mean_slack": 2.07300298874262,
+      "tie_rule": "survive at upper >= cutoff; mandatory items have truth > cutoff",
+      "levels": 4,
+      "state_bytes_per_doc": 16,
+      "documents": 256
+    },
+    {
+      "threshold": 31.133539520023852,
+      "upper_violations": 0,
+      "false_survivors": 142,
+      "mean_slack": 1.6196379761079267,
+      "tie_rule": "survive at upper >= cutoff; mandatory items have truth > cutoff",
+      "levels": 8,
+      "state_bytes_per_doc": 32,
+      "documents": 256
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "verified_files": 70,
+  "engineering": {
+    "nq-full": {
+      "mean_query_median_ms": {
+        "ind4": 1.2114288856537314,
+        "ind8": 1.3300928640092025
+      },
+      "relative_change": -0.08921480715097652,
+      "queries": 64,
+      "passes": 5,
+      "scope": "Full existing refinement pipeline, one process session"
+    },
+    "hotpotqa-colbertv2": {
+      "mean_query_median_ms": {
+        "ind4": 1.9647577319119591,
+        "ind8": 2.4680308633833192
+      },
+      "relative_change": -0.20391687111296664,
+      "queries": 64,
+      "passes": 5,
+      "scope": "Full existing refinement pipeline, one process session"
+    }
+  },
+  "hybrid": {
+    "nq-full": {
+      "mean_query_median_ms": {
+        "mixed24": 0.8839398154426211,
+        "local24": 0.9025295391135538
+      },
+      "relative_change": 0.02103053097752383,
+      "scope": "Coarse TopB only, three sessions; 24B per document for both"
+    },
+    "hotpotqa-colbertv2": {
+      "mean_query_median_ms": {
+        "mixed24": 1.988957463860667,
+        "local24": 2.332206656622778
+      },
+      "relative_change": 0.1725774427050073,
+      "scope": "Coarse TopB only, three sessions; 24B per document for both"
+    }
+  },
+  "scope": "Observed queries; not an upstream benchmark or leaderboard. Query repetitions are not independent queries."
+}

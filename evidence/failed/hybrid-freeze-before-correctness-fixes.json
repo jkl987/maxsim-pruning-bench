@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-10-19T06:39:32.481060+00:00",
+  "purpose": "One minimal hybrid after information-only diagnostics showedlimitedNQcandidatebenefit; actualnetbenefit unresolved",
+  "policy": "Greedy8disjoint directedpairs,min normalizedTop512tail loss +.001*(1-cosine), lexicographic ties; never uses documenttruth orpastquerytiming.24groups\u00d78bits=24B.8pairs isminimumwhole64bitwordreductionfrom32states; nolearnedrouter.",
+  "control": "32independentterms,16termswithlargestmax-minus-tailspanuse8bins,theother16use4bins; 24B realpackedstate, samegenericpackingkernel. Alsoind32\u00d74bins16Bbaseline.",
+  "evaluation": "Same64fixedqueries,5pairedpasses,3restartedprocesssessionsonPRO6000. No parametersearch; preservecorrectnessfailure.",
+  "stop": "Ifnotstable netgain overmatchedbudgetcontrol onbothobservedcorpora,do notexpandandno freshheldoutencoding. Crossfactorial remainsdiagnostic.",
+  "sources": {
+    "v6_hybrid_engine.py": "e2d676a49d24f7bb5caec18b7a945fdebebe71bc9ceabb6da0faca56c54f6133",
+    "v6_hybrid_bench.py": "1631a338fc4f3a25481696d669047509e59f228c0a014af7c12dcbb40501166c",
+    "v6_engine.py": "82f881c66a643e82a72ac863ab3664be2193c7aa1a602c9b8daf1f35ab5f967a",
+    "v6_diagnose.py": "d31bf772c1f0e5dde7a77ad579c4eccdcc65322814ff444136fa74cb08009e7a"
+  }
+}

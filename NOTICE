@@ -1,0 +1,13 @@
+MaxSim pruning audits and reference controls
+Copyright (c) 2026 jkl987 and contributors
+
+The source and experimental records in this repository were developed during
+an exploratory MaxSim filtering study. Established algorithms and public
+implementations are acknowledged in README.md and source comments; inclusion
+does not imply that membership binning, pruning or GPU fusion are novel.
+
+No third-party engine source tree, model weights or corpus vectors are bundled.
+Third-party dependencies, model checkpoints and datasets retain their own
+licenses. The GIGP+ upstream patch is maintained separately from this repository.
+Historical source retains its original file structure and hashes. Synthetic
+examples use generated inputs and do not redistribute benchmark corpus text.

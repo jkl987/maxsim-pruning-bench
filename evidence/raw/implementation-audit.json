@@ -1,0 +1,50 @@
+{
+  "archive_sha_verified": true,
+  "raw_timing_recalculation": {
+    "4096": {
+      "mean_ms": {
+        "conditional": 4.1324485180450505,
+        "power32": 2.302726467641839
+      },
+      "increase": 0.7945894035243282
+    },
+    "16384": {
+      "mean_ms": {
+        "conditional": 7.442809691134485,
+        "power32": 4.288724929255928
+      },
+      "increase": 0.7354364791182293
+    }
+  },
+  "timing_source": "evidence_v5_stream.py: synchronizedCPUinput-toCPU100IDs, everytrial .cuda.synchronize; external8warmup then3wholepasses",
+  "shared_input": "Allsamepipelinecontrols samefrozenqueryvectors/centroids/codes/offsets/IVF andlocal6rawrefinement. Dataset-specificencoder differences confirmed.",
+  "nonidentical_controls": {
+    "normal32": "rankspace8bins and1e-4guard",
+    "power32": "scorepower2bins and4e-4guard;identityrepresentatives",
+    "conditional16_vs_additive16": "sameanchorselector,groups,bins,propagation,finish;only boundtable differs",
+    "budgets": [
+      4096,
+      16384
+    ]
+  },
+  "guard": "Newv6controls use4e-4FP32guard and represented finiteLUTabs<=2. Guardedcoarsefunction only; nofullrawrank guarantee.",
+  "ties": "Strictscore>exactTopBcut mustretained; exactcut ties mayreturndifferent IDs. OldfullsamepipelineID comparisonsfound0differences. Newaudit reportsboundarytiecount.",
+  "memory": "v5 allocatorpeak vsnativephysicalsample notinterchangeable. v6 reportsresident index separately, uniqueengine-ownedstorage andincrementaltemporarypeak. Formalendtoendmemoryincludesallbuffers; instrumentedphase excludedfromheadlines.",
+  "unverified": [
+    "Fullcorpus two missingencoder/corpus cells",
+    "PhysicalDRAM/PCIe counters",
+    "Administrativeexclusivehardware allocation orlockedclocks",
+    "Generalization to unseen data",
+    "Any proposedlocalmerge speedup beforeimplementation"
+  ],
+  "source_hashes": {
+    "evidence_v5_stream.py": "4a6369f62754ec399dbaf52761f1304286c5edf77e2c2581c842a73a6b0efd08",
+    "frontier_v5_bounds.py": "43486eab48d8d36324dded1ac199350a93bead538f5b77ab66b90194d5b83fb0",
+    "frontier_v5_power32.py": "135c9adb6c660bc501ff236c7fbaa7162e111de129dae9f3c963e35e56cf0d88",
+    "frontier_rankedanchor_engine.py": "3649c4e5eb0bea8aa8f2e8edec7972c939917cd92c3e89c3d0287e59a1255164",
+    "frontier_certified_guard.py": "b66df586f649f62012e7b1f24c2f5c8ce384441f55e62215ac455873977609f6",
+    "frontier_densefinish_engine.py": "4f59c3627bbe870f9e397b9fb05f757d4f4f1992fdfc95b0e41b6034648eb262",
+    "v6_engine.py": "82f881c66a643e82a72ac863ab3664be2193c7aa1a602c9b8daf1f35ab5f967a",
+    "v6_diagnose.py": "d31bf772c1f0e5dde7a77ad579c4eccdcc65322814ff444136fa74cb08009e7a"
+  }
+}

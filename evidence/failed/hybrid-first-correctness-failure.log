@@ -1,0 +1,10 @@
+TIMED nq-full 1
+AUDIT nq-full 1 2 failures 1
+AUDIT nq-full 2 2 failures 2
+Traceback (most recent call last):
+  File "/home/zzfang/maxsim-prescan-20261018/v6_hybrid_bench.py", line 16, in <module>
+    exec(compile(s,str(R/'v6_diagnose.py'),'exec'))
+  File "/home/zzfang/maxsim-prescan-20261018/v6_diagnose.py", line 55, in <module>
+    err=None
+   ^^^^^^^^^^
+AssertionError: [{'query_id': 'test484', 'method': 'local24', 'upper_violations': 2681468, 'strict_missing': 272, 'true_cut': 30.17236328125, 'seed_cut': 30.16845703125, 'true_cut_ties': 53, 'slack_mean': -5.56233549118042, 'slack_p50_p90': [-5.564464569091797, -5.466678619384766], 'false_survivors_truecut': 0, 'false_survivors_seedcut': 0, 'scored_documents': 8192, 'scored_tokens': 903398, 'state_bytes_per_doc': 24.0, 'owned_workspace_bytes': 183865356, 'logical_postings': 8010579, 'transient_peak_extra_bytes': 9260032, 'workspace_plus_transient_bytes': 193125388, 'instrumented_gpu_ms': {'lut_top': 0.150176003575325, 'selection_table': 0.04710400104522705, 'encode_tiles': 0.050175998359918594, 'scatter': 0.16076800227165222, 'decode': 0.07407999783754349, 'seed_select': 0.13100799918174744, 'seed_score': 0.024671999737620354, 'threshold_compact': 0.07331199944019318, 'survivor_score': 0.008224000222980976, 'final_select': 0.1515520066022873}, 'online_guide': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 19, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 23]}]

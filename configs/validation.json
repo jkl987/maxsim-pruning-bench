@@ -1,0 +1,34 @@
+{
+  "seed": 20261019,
+  "cpu_demo": {
+    "centroids": 256,
+    "terms": 32,
+    "documents": 256,
+    "budget": 10,
+    "prefix": 64,
+    "levels": [
+      2,
+      4,
+      8
+    ]
+  },
+  "gpu_demo": {
+    "centroids": 256,
+    "terms": 32,
+    "documents": 1024,
+    "budget": 128,
+    "prefix": 64,
+    "levels": [
+      2,
+      4,
+      8
+    ],
+    "cases": [
+      "random",
+      "negative",
+      "ties"
+    ],
+    "repetitions": 5,
+    "scope": "correctness smoke, not corpus benchmark"
+  }
+}

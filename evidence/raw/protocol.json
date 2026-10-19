@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-10-19T06:23:19.717079+00:00",
+  "goal": "Failure attribution and actionable continuation/stop decision, no assumed positive speedup or publication target",
+  "selection": {
+    "query_count": 64,
+    "query_order": "sha256(v6-diagnostic- + qid)",
+    "cross_corpus_documents": 64000,
+    "document_rng_seed": 2026102002
+  },
+  "main_configs": [
+    "ind32_L2_8B",
+    "ind32_L4_16B",
+    "ind32_L8_32B",
+    "conditional16_L4_8B",
+    "conditional16_L8_16B",
+    "conditional16_L16_32B",
+    "additive16_L8_16B"
+  ],
+  "main_full_budget": 4096,
+  "subset_budget": 128,
+  "prefixes": {
+    "full": [
+      512
+    ],
+    "subset": [
+      64,
+      512
+    ]
+  },
+  "formal_repeats": 5,
+  "oracle": "Complete codebook conditional envelope only for matched16x8 states; construction cost separately measured, cached oracle not deployable result",
+  "stageA": "Matched64kdocument2x2factorial, reuseexistingdiagonalvectors, encodeonlymissingcells. Same subset index training recipe; notfullcorpusperformance. Model revisions and protocols verified before encoding.",
+  "stageB_C": "Reuse fullNQ/Hotpotcodebooks and vectors on onePRO6000, serialized timing. No ownencoding/indexworkduringformal timings.",
+  "resources_estimate": {
+    "new_full_corpus_encoding": false,
+    "new_paid_resources": false,
+    "subset_embeddings_disk_gib_upper": 12,
+    "temporary_gpu_gib_expected_below": 24,
+    "estimated_gpu_hours_range": [
+      0.5,
+      2
+    ]
+  },
+  "stopping": "Stopextension if completeenvelopeofferslittlebenefit, orpracticalapproximationcosttoo high, orsmallhybridcannotbeat samebudgetindependentcontrol includingonlinechoice. Assessreliableengineeringseparately.",
+  "labels": "BothNQandHotpotobserved; noheldoutclaim. Any new algorithm requires independent frozen evaluation if firstpassingobservedtests."
+}
