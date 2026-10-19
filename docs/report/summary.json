@@ -1,0 +1,634 @@
+{
+  "verified_files": 70,
+  "engineering": {
+    "nq-full": {
+      "mean_query_median_ms": {
+        "ind4": 1.2114288856537314,
+        "ind8": 1.3300928640092025
+      },
+      "candidate_mean_query_median_ms": 1.2114288856537314,
+      "control_mean_query_median_ms": 1.3300928640092025,
+      "relative_change": -0.08921480715097652,
+      "query_bootstrap_95ci": [
+        -0.09456494697573221,
+        -0.08384917266211825
+      ],
+      "query_wins": 64,
+      "query_ties": 0,
+      "query_losses": 0,
+      "paired_queries": 64,
+      "bootstrap_seed": 20261019,
+      "bootstrap_resamples": 10000,
+      "scope": "Query resampling only; excludes machine/environment uncertainty. Observed development data.",
+      "queries": 64,
+      "passes": 5,
+      "timing_boundary": "Full existing refinement pipeline; one process session"
+    },
+    "hotpotqa-colbertv2": {
+      "mean_query_median_ms": {
+        "ind4": 1.9647577319119591,
+        "ind8": 2.4680308633833192
+      },
+      "candidate_mean_query_median_ms": 1.9647577319119591,
+      "control_mean_query_median_ms": 2.4680308633833192,
+      "relative_change": -0.20391687111296664,
+      "query_bootstrap_95ci": [
+        -0.2907826986719909,
+        -0.14504370123397733
+      ],
+      "query_wins": 63,
+      "query_ties": 0,
+      "query_losses": 1,
+      "paired_queries": 64,
+      "bootstrap_seed": 20261019,
+      "bootstrap_resamples": 10000,
+      "scope": "Query resampling only; excludes machine/environment uncertainty. Observed development data.",
+      "queries": 64,
+      "passes": 5,
+      "timing_boundary": "Full existing refinement pipeline; one process session"
+    }
+  },
+  "hybrid": {
+    "nq-full": {
+      "mean_query_median_ms": {
+        "mixed24": 0.883939815442621,
+        "local24": 0.9025295391135538
+      },
+      "candidate_mean_query_median_ms": 0.9025295391135538,
+      "control_mean_query_median_ms": 0.883939815442621,
+      "relative_change": 0.02103053097752383,
+      "query_bootstrap_95ci": [
+        0.019953876161423384,
+        0.022135426070271486
+      ],
+      "query_wins": 0,
+      "query_ties": 0,
+      "query_losses": 64,
+      "paired_queries": 64,
+      "bootstrap_seed": 20261019,
+      "bootstrap_resamples": 10000,
+      "scope": "Query resampling only; excludes machine/environment uncertainty. Observed development data.",
+      "session_relative_changes": [
+        0.02044054365309167,
+        0.021083958860869112,
+        0.021566428613174038
+      ],
+      "pooling": "Average the three session medians for each query, then resample queries",
+      "timing_boundary": "Coarse TopB only, 24B/document for both methods; three sessions"
+    },
+    "hotpotqa-colbertv2": {
+      "mean_query_median_ms": {
+        "mixed24": 1.9889574638606669,
+        "local24": 2.3322066566227777
+      },
+      "candidate_mean_query_median_ms": 2.3322066566227777,
+      "control_mean_query_median_ms": 1.9889574638606673,
+      "relative_change": 0.17257744270500708,
+      "query_bootstrap_95ci": [
+        0.059807374233833234,
+        0.3293279769957769
+      ],
+      "query_wins": 23,
+      "query_ties": 0,
+      "query_losses": 41,
+      "paired_queries": 64,
+      "bootstrap_seed": 20261019,
+      "bootstrap_resamples": 10000,
+      "scope": "Query resampling only; excludes machine/environment uncertainty. Observed development data.",
+      "session_relative_changes": [
+        0.17255897837834766,
+        0.17248015552046714,
+        0.17269496536306872
+      ],
+      "pooling": "Average the three session medians for each query, then resample queries",
+      "timing_boundary": "Coarse TopB only, 24B/document for both methods; three sessions"
+    }
+  },
+  "scope": "Observed queries; no upstream-system speedup or leaderboard claim",
+  "coarse_inputs": {
+    "nq-full": {
+      "documents": 2681468,
+      "centroids": 131072,
+      "tokens": 182802946,
+      "dimension": 96,
+      "shared_index_bytes": 1499363852
+    },
+    "hotpotqa-colbertv2": {
+      "documents": 5233329,
+      "centroids": 262144,
+      "tokens": 310688026,
+      "dimension": 128,
+      "shared_index_bytes": 2241602140
+    }
+  },
+  "coarse_diagnostics": {
+    "nq-full": {
+      "ind2": {
+        "mean_query_median_ms": 1.0853533622139366,
+        "state_bytes_per_doc": 8.0,
+        "slack_mean": 0.2544687995687127,
+        "false_survivors_truecut": 126595.859375,
+        "false_survivors_seedcut": 174913.09375,
+        "scored_documents": 181747.578125,
+        "scored_tokens": 17170724.25,
+        "owned_workspace_bytes": 138863108,
+        "workspace_plus_transient_bytes": 149060612,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.1630600020289421,
+          "selection_table": 0.012355999962892383,
+          "encode_tiles": 0.040984000312164426,
+          "scatter": 0.13416000083088875,
+          "decode": 0.05334399966523051,
+          "seed_select": 0.128023998811841,
+          "seed_score": 0.02301199990324676,
+          "threshold_compact": 0.07648800034075975,
+          "survivor_score": 0.3720639944076538,
+          "final_select": 0.15732400119304657
+        },
+        "profile_false_survivors": 143756.875
+      },
+      "ind4": {
+        "mean_query_median_ms": 0.8669676899444312,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 0.21712684957310557,
+        "false_survivors_truecut": 33400.125,
+        "false_survivors_seedcut": 35675.0,
+        "scored_documents": 40071.078125,
+        "scored_tokens": 3991119.703125,
+        "owned_workspace_bytes": 161363964,
+        "workspace_plus_transient_bytes": 171561468,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.15279999934136868,
+          "selection_table": 0.004600000102072954,
+          "encode_tiles": 0.03993199858814478,
+          "scatter": 0.15820800326764584,
+          "decode": 0.05358000053092837,
+          "seed_select": 0.12875600345432758,
+          "seed_score": 0.023884000023826957,
+          "threshold_compact": 0.07676800061017275,
+          "survivor_score": 0.07412800029851496,
+          "final_select": 0.15053600445389748
+        },
+        "profile_false_survivors": 35966.75
+      },
+      "ind8": {
+        "mean_query_median_ms": 0.9864786170510342,
+        "state_bytes_per_doc": 32.0,
+        "slack_mean": 0.2019974571885541,
+        "false_survivors_truecut": 11975.25,
+        "false_survivors_seedcut": 12121.171875,
+        "scored_documents": 16291.6875,
+        "scored_tokens": 1618940.390625,
+        "owned_workspace_bytes": 206365676,
+        "workspace_plus_transient_bytes": 216563180,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.15176000073552132,
+          "selection_table": 0.00563200016040355,
+          "encode_tiles": 0.07078400161117315,
+          "scatter": 0.2856840007007122,
+          "decode": 0.07236800156533718,
+          "seed_select": 0.12989999912679195,
+          "seed_score": 0.024316000286489725,
+          "threshold_compact": 0.07346000242978334,
+          "survivor_score": 0.023151999688707292,
+          "final_select": 0.15080400183796883
+        },
+        "profile_false_survivors": 12552.0
+      },
+      "cond4": {
+        "mean_query_median_ms": 0.8503996505169198,
+        "state_bytes_per_doc": 8.0,
+        "slack_mean": 0.2221200515050441,
+        "false_survivors_truecut": 35728.203125,
+        "false_survivors_seedcut": 38177.859375,
+        "scored_documents": 42580.375,
+        "scored_tokens": 4233777.0625,
+        "owned_workspace_bytes": 138863004,
+        "workspace_plus_transient_bytes": 149060508,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.15263999812304974,
+          "selection_table": 0.03532800078392029,
+          "encode_tiles": 0.027900000102818012,
+          "scatter": 0.1241479991003871,
+          "decode": 0.05309999920427799,
+          "seed_select": 0.1277960017323494,
+          "seed_score": 0.022788000060245395,
+          "threshold_compact": 0.07596000097692013,
+          "survivor_score": 0.07928399951197207,
+          "final_select": 0.15078400634229183
+        },
+        "profile_false_survivors": 38631.875
+      },
+      "cond8": {
+        "mean_query_median_ms": 0.8566474170947913,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 0.20770649670157582,
+        "false_survivors_truecut": 13412.21875,
+        "false_survivors_seedcut": 13580.46875,
+        "scored_documents": 17749.640625,
+        "scored_tokens": 1763843.015625,
+        "owned_workspace_bytes": 161363884,
+        "workspace_plus_transient_bytes": 171561388,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.15373600088059902,
+          "selection_table": 0.03587600030004978,
+          "encode_tiles": 0.03759600128978491,
+          "scatter": 0.16192000173032284,
+          "decode": 0.052184001076966524,
+          "seed_select": 0.1274080015718937,
+          "seed_score": 0.023300000000745058,
+          "threshold_compact": 0.07647600118070841,
+          "survivor_score": 0.02525199978845194,
+          "final_select": 0.15080800093710423
+        },
+        "profile_false_survivors": 13836.25
+      },
+      "cond16": {
+        "mean_query_median_ms": 0.9958113860193407,
+        "state_bytes_per_doc": 32.0,
+        "slack_mean": 0.20180205325596035,
+        "false_survivors_truecut": 7189.5625,
+        "false_survivors_seedcut": 7246.234375,
+        "scored_documents": 11576.625,
+        "scored_tokens": 1139924.65625,
+        "owned_workspace_bytes": 206365644,
+        "workspace_plus_transient_bytes": 216563148,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.1527120005339384,
+          "selection_table": 0.042755999602377415,
+          "encode_tiles": 0.06963200122117996,
+          "scatter": 0.2918839994817972,
+          "decode": 0.051879999693483114,
+          "seed_select": 0.1303400006145239,
+          "seed_score": 0.024284000042825937,
+          "threshold_compact": 0.07335600163787603,
+          "survivor_score": 0.014356000232510269,
+          "final_select": 0.15053600445389748
+        },
+        "profile_false_survivors": 7374.0
+      },
+      "delta8": {
+        "mean_query_median_ms": 0.9360535605082987,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 0.27421585307456553,
+        "false_survivors_truecut": 48776.421875,
+        "false_survivors_seedcut": 49571.859375,
+        "scored_documents": 53757.328125,
+        "scored_tokens": 5043196.96875,
+        "owned_workspace_bytes": 161363884,
+        "workspace_plus_transient_bytes": 171561388,
+        "profile_query_ids": [
+          "test1558",
+          "test2113",
+          "test2518",
+          "test2556",
+          "test3056",
+          "test3389",
+          "test484",
+          "test742"
+        ],
+        "phase_ms": {
+          "lut_top": 0.15198399871587753,
+          "selection_table": 0.04595200065523386,
+          "encode_tiles": 0.037760001607239246,
+          "scatter": 0.16281600296497345,
+          "decode": 0.0536080002784729,
+          "seed_select": 0.12841200083494186,
+          "seed_score": 0.023796000285074115,
+          "threshold_compact": 0.07645200006663799,
+          "survivor_score": 0.08547600009478629,
+          "final_select": 0.15130000561475754
+        },
+        "profile_false_survivors": 44493.375
+      },
+      "ideal8": {
+        "mean_query_median_ms": 0.8575978190492606,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 0.20728230581153184,
+        "false_survivors_truecut": 13393.65625,
+        "false_survivors_seedcut": 13557.6875,
+        "scored_documents": 17725.65625,
+        "scored_tokens": 1761658.671875,
+        "owned_workspace_bytes": 161363884,
+        "workspace_plus_transient_bytes": null,
+        "scope": "Offline oracle; cached time excludes envelope construction, not deployable latency",
+        "offline_envelope_build_ms": 153.00448166453862,
+        "profile_query_ids": []
+      }
+    },
+    "hotpotqa-colbertv2": {
+      "ind2": {
+        "mean_query_median_ms": 1.7125856884376844,
+        "state_bytes_per_doc": 8.0,
+        "slack_mean": 5.267239924520254,
+        "false_survivors_truecut": 249720.125,
+        "false_survivors_seedcut": 477871.140625,
+        "scored_documents": 488258.4375,
+        "scored_tokens": 34477688.171875,
+        "owned_workspace_bytes": 259007900,
+        "workspace_plus_transient_bytes": 276668828,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.2514960002154112,
+          "selection_table": 0.0058480002044234425,
+          "encode_tiles": 0.05246400088071823,
+          "scatter": 0.1217319993302226,
+          "decode": 0.09713200107216835,
+          "seed_select": 0.1443720031529665,
+          "seed_score": 0.024104000302031636,
+          "threshold_compact": 0.09428000077605247,
+          "survivor_score": 0.9106519995257258,
+          "final_select": 0.18585599958896637
+        },
+        "profile_false_survivors": 284580.625
+      },
+      "ind4": {
+        "mean_query_median_ms": 1.5434088109032018,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 5.152556020766497,
+        "false_survivors_truecut": 133270.84375,
+        "false_survivors_seedcut": 273352.78125,
+        "scored_documents": 280754.921875,
+        "scored_tokens": 19662911.140625,
+        "owned_workspace_bytes": 302972220,
+        "workspace_plus_transient_bytes": 320633148,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.24278799816966057,
+          "selection_table": 0.005632000102195889,
+          "encode_tiles": 0.07193600106984377,
+          "scatter": 0.26199199818074703,
+          "decode": 0.09803600050508976,
+          "seed_select": 0.1451479997485876,
+          "seed_score": 0.024812000337988138,
+          "threshold_compact": 0.08932800032198429,
+          "survivor_score": 0.5867920001037419,
+          "final_select": 0.18419199995696545
+        },
+        "profile_false_survivors": 148536.0
+      },
+      "ind8": {
+        "mean_query_median_ms": 2.0253544171282556,
+        "state_bytes_per_doc": 32.0,
+        "slack_mean": 5.106558497995138,
+        "false_survivors_truecut": 87735.765625,
+        "false_survivors_seedcut": 302655.859375,
+        "scored_documents": 311313.25,
+        "scored_tokens": 20699899.109375,
+        "owned_workspace_bytes": 390900860,
+        "workspace_plus_transient_bytes": 408561788,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.24013600125908852,
+          "selection_table": 0.005588000116404146,
+          "encode_tiles": 0.14827200584113598,
+          "scatter": 0.5719279907643795,
+          "decode": 0.13837600126862526,
+          "seed_select": 0.14942000061273575,
+          "seed_score": 0.02406800026074052,
+          "threshold_compact": 0.09048399981111288,
+          "survivor_score": 1.3788239741697907,
+          "final_select": 0.1815039999783039
+        },
+        "profile_false_survivors": 92984.375
+      },
+      "cond4": {
+        "mean_query_median_ms": 3.885279269525199,
+        "state_bytes_per_doc": 8.0,
+        "slack_mean": 6.192014321684837,
+        "false_survivors_truecut": 1185200.640625,
+        "false_survivors_seedcut": 1850115.375,
+        "scored_documents": 1858681.359375,
+        "scored_tokens": 114904316.5,
+        "owned_workspace_bytes": 259007796,
+        "workspace_plus_transient_bytes": 276668724,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.23837599903345108,
+          "selection_table": 0.03657200001180172,
+          "encode_tiles": 0.03916399972513318,
+          "scatter": 0.10232400055974722,
+          "decode": 0.09504800103604794,
+          "seed_select": 0.14196000061929226,
+          "seed_score": 0.022803999949246645,
+          "threshold_compact": 0.10788000095635653,
+          "survivor_score": 3.849475839175284,
+          "final_select": 0.18546799942851067
+        },
+        "profile_false_survivors": 1138904.125
+      },
+      "cond8": {
+        "mean_query_median_ms": 4.086340162757551,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 6.150895148515701,
+        "false_survivors_truecut": 1096087.96875,
+        "false_survivors_seedcut": 1893846.34375,
+        "scored_documents": 1903671.328125,
+        "scored_tokens": 116442714.375,
+        "owned_workspace_bytes": 302972140,
+        "workspace_plus_transient_bytes": 320633068,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.2364680003374815,
+          "selection_table": 0.037376000080257654,
+          "encode_tiles": 0.06501599960029125,
+          "scatter": 0.21404799818992615,
+          "decode": 0.09360000025480986,
+          "seed_select": 0.14301199652254581,
+          "seed_score": 0.02409200044348836,
+          "threshold_compact": 0.09872800018638372,
+          "survivor_score": 3.5148480418138206,
+          "final_select": 0.18495999835431576
+        },
+        "profile_false_survivors": 1053537.0
+      },
+      "cond16": {
+        "mean_query_median_ms": 4.314965375669999,
+        "state_bytes_per_doc": 32.0,
+        "slack_mean": 6.132575623691082,
+        "false_survivors_truecut": 1054375.40625,
+        "false_survivors_seedcut": 1802780.34375,
+        "scored_documents": 1811475.25,
+        "scored_tokens": 110661620.078125,
+        "owned_workspace_bytes": 390900828,
+        "workspace_plus_transient_bytes": 408561756,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.236863998696208,
+          "selection_table": 0.04369200021028519,
+          "encode_tiles": 0.14286400191485882,
+          "scatter": 0.4698119983077049,
+          "decode": 0.12165200058370829,
+          "seed_select": 0.14792799949645996,
+          "seed_score": 0.024088000413030386,
+          "threshold_compact": 0.09747600089758635,
+          "survivor_score": 3.4237920651212335,
+          "final_select": 0.18393599800765514
+        },
+        "profile_false_survivors": 1012436.0
+      },
+      "delta8": {
+        "mean_query_median_ms": 6.666534507530741,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 7.227053284645081,
+        "false_survivors_truecut": 2967241.125,
+        "false_survivors_seedcut": 3518222.296875,
+        "scored_documents": 3528215.875,
+        "scored_tokens": 212750983.28125,
+        "owned_workspace_bytes": 302972140,
+        "workspace_plus_transient_bytes": 320633068,
+        "profile_query_ids": [
+          "5a70f0e75542994082a3e408",
+          "5a81fa59554299676cceb1b0",
+          "5ab82dbb5542990e739ec857",
+          "5ab9753055429970cfb8eb0b",
+          "5ac41ca75542991943173919",
+          "5adcfe7f5542992c1e3a24f1",
+          "5adea0c5554299728e26c776",
+          "5ae08a0455429924de1b70fc"
+        ],
+        "phase_ms": {
+          "lut_top": 0.23894399777054787,
+          "selection_table": 0.054527999833226204,
+          "encode_tiles": 0.06579199992120266,
+          "scatter": 0.20681999996304512,
+          "decode": 0.09339999966323376,
+          "seed_select": 0.142019996419549,
+          "seed_score": 0.023560000117868185,
+          "threshold_compact": 0.10460400022566319,
+          "survivor_score": 5.458396028727293,
+          "final_select": 0.1843199972063303
+        },
+        "profile_false_survivors": 2275045.0
+      },
+      "ideal8": {
+        "mean_query_median_ms": 4.3540706392377615,
+        "state_bytes_per_doc": 16.0,
+        "slack_mean": 6.150895148515701,
+        "false_survivors_truecut": 1096087.96875,
+        "false_survivors_seedcut": 1893846.34375,
+        "scored_documents": 1903671.328125,
+        "scored_tokens": 116442714.375,
+        "owned_workspace_bytes": 302972140,
+        "workspace_plus_transient_bytes": null,
+        "scope": "Offline oracle; cached time excludes envelope construction, not deployable latency",
+        "offline_envelope_build_ms": 309.01860710946494,
+        "profile_query_ids": []
+      }
+    }
+  }
+}

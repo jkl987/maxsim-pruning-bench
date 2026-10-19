@@ -1,0 +1,24 @@
+{
+  "scope": "Source snapshot for v0.2 CPU/GPU correctness validation; no new corpus timing experiment",
+  "files": {
+    "configs/validation.json": "06aa02895132bee786cfb1f0c7f448d6c93e6c6ebf9ad4d0d78add11e14466c0",
+    "scripts/demo_gpu.py": "e3a29cb026f079c1654adecb8574a57ef05c7dc5d131a2fa5ee70ae7f0ba4b6d",
+    "scripts/validate_pinned_loader.py": "117f555cf75a6416118627dc80c5023c9bbcc13b59a9022a31e9a3fdeff98a86",
+    "src/maxsim_pruning/__init__.py": "34843e413bc813c508ebedeb636903c650fe58d0bcbb3af12f4476b2597ee58c",
+    "src/maxsim_pruning/evidence.py": "fcae8690f9c256bd5134cc4d9da9f44bd83f8deab5c7f97267d0fa06c1b1f2cb",
+    "src/maxsim_pruning/loading.py": "659a4af5f3cc63fb38fbe31bfa13332d438aabf710675ba184de56e1ab2a6776",
+    "src/maxsim_pruning/reference.py": "8bd826cea5819ba9245637c765aeb08a87b31624759293c66779beb8edd89f1d",
+    "tests/test_evidence.py": "2133c65092c58f7d6d194943d67db84bde74ea77724c6d776dd200d510f6becb",
+    "tests/test_loading.py": "98fef046d8e4dae5df5fd88df7eb04772155f3755c69e1f909ad761fcdff944e",
+    "tests/test_reference.py": "818bc0bc759c739669fa55e1f2a4ca60e58dc419d3ddd37f8d1710e9c503de11"
+  },
+  "tests": {
+    "unit_tests": 13,
+    "gpu_cases": 9,
+    "pinned_loader_bytes": 524288,
+    "historical_files_hash_verified": 70,
+    "optimized_python_gpu": true,
+    "wheel_install_isolated_import": true
+  },
+  "remote_test_source_hashes_match": true
+}

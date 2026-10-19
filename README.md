@@ -5,9 +5,14 @@ repository preserves useful independent-bin controls and the negative results
 of a conditional-summary investigation. It is a research artifact, not a
 production search engine or a claim of a new state-of-the-art algorithm.
 
+[中文说明](README.zh-CN.md) · [Generated evidence and figures](docs/RESULTS.md) ·
+[Reusable loader](docs/LOADING.md)
+
 ## Run without data or a GPU
 
 ```sh
+git clone https://github.com/jkl987/maxsim-pruning-bench.git
+cd maxsim-pruning-bench
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install -e .
@@ -20,6 +25,22 @@ The CPU demo is a small float64 audit reference. It checks independent unary
 membership bounds at 8, 16 and 32 bytes per document for 32 query terms.
 `recompute.py` verifies archived SHA256 hashes and recomputes comparisons from
 per-query raw timings. No embeddings, models, credentials or server are needed.
+Validation remains active under `python -O`; malformed timings, duplicated or
+unmatched query IDs, unequal state budgets and recorded correctness failures
+are rejected. Paired bootstrap intervals resample query IDs, averaging each
+query's three hybrid session medians before resampling. They do not quantify
+machine/environment variability.
+
+Rebuild the three figures and HTML report from archived measurements:
+
+```sh
+python -m pip install -e '.[report]'
+python scripts/render_report.py --output run-output/report
+```
+
+Open `run-output/report/index.html`. Cached oracle timing is explicitly separate
+from envelope construction and is excluded from deployable latency curves.
+The CPU and GPU examples read the fixed fixture in `configs/validation.json`.
 
 ## Run the preserved GPU implementation
 
@@ -84,6 +105,8 @@ the second failure JSON; it is not an independent third measurement.
 ## Layout
 
 - `src/maxsim_pruning/`: portable float64 reference and audit helpers.
+- `src/maxsim_pruning/loading.py`: validated chunked readonly-memmap loading;
+  supports `.npy` header offsets and rejects writable mappings and views.
 - `tests/`: boundary, negative-value, duplicate-code and input-contract checks.
 - `scripts/`: data-free CPU/GPU demos and raw-result recomputation.
 - `evidence/raw/`: original protocol, provenance, per-query results and timings.
@@ -91,6 +114,10 @@ the second failure JSON; it is not an independent third measurement.
 - `archive/source/`: unchanged historical experiment source, including the
   pinned-memory loader and conditional diagnostics.
 - `docs/REPRODUCIBILITY.md`: what can and cannot be reproduced from this release.
+
+CPU CI covers Linux/Python 3.10 and 3.12 and macOS/Python 3.12, including optimized
+Python. A separate job regenerates the report. CUDA tests require a GPU host
+and are recorded separately; CPU CI does not imply that GPU tests ran there.
 
 ## Contributing
 

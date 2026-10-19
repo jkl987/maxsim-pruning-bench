@@ -1,0 +1,159 @@
+{
+  "scope": "Synthetic smoke test, no public-system speed claim",
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "config": {
+    "seed": 20261019,
+    "cpu_demo": {
+      "centroids": 256,
+      "terms": 32,
+      "documents": 256,
+      "budget": 10,
+      "prefix": 64,
+      "levels": [
+        2,
+        4,
+        8
+      ]
+    },
+    "gpu_demo": {
+      "centroids": 256,
+      "terms": 32,
+      "documents": 1024,
+      "budget": 128,
+      "prefix": 64,
+      "levels": [
+        2,
+        4,
+        8
+      ],
+      "cases": [
+        "random",
+        "negative",
+        "ties"
+      ],
+      "repetitions": 5,
+      "scope": "correctness smoke, not corpus benchmark"
+    }
+  },
+  "results": [
+    {
+      "case": "random",
+      "levels": 2,
+      "state_bytes_per_doc": 8,
+      "upper_violations": 0,
+      "times_ms": [
+        0.8270499529317021,
+        0.26622298173606396,
+        0.22851303219795227,
+        0.2163429744541645,
+        0.21280208602547646
+      ]
+    },
+    {
+      "case": "random",
+      "levels": 4,
+      "state_bytes_per_doc": 16,
+      "upper_violations": 0,
+      "times_ms": [
+        0.3164439694955945,
+        0.23671297822147608,
+        0.21610199473798275,
+        0.21212303545325994,
+        0.20596198737621307
+      ]
+    },
+    {
+      "case": "random",
+      "levels": 8,
+      "state_bytes_per_doc": 32,
+      "upper_violations": 0,
+      "times_ms": [
+        0.29499304946511984,
+        0.2332130679860711,
+        0.21427299361675978,
+        0.20626198966056108,
+        0.2004830166697502
+      ]
+    },
+    {
+      "case": "negative",
+      "levels": 2,
+      "state_bytes_per_doc": 8,
+      "upper_violations": 0,
+      "times_ms": [
+        0.26294298004359007,
+        0.2166930353268981,
+        0.20542298443615437,
+        0.19857194274663925,
+        0.19468192476779222
+      ]
+    },
+    {
+      "case": "negative",
+      "levels": 4,
+      "state_bytes_per_doc": 16,
+      "upper_violations": 0,
+      "times_ms": [
+        0.2509730402380228,
+        0.21175295114517212,
+        0.2002819674089551,
+        0.1966120908036828,
+        0.19534293096512556
+      ]
+    },
+    {
+      "case": "negative",
+      "levels": 8,
+      "state_bytes_per_doc": 32,
+      "upper_violations": 0,
+      "times_ms": [
+        0.24556310381740332,
+        0.21072197705507278,
+        0.2042029518634081,
+        0.19667204469442368,
+        0.1945430412888527
+      ]
+    },
+    {
+      "case": "ties",
+      "levels": 2,
+      "state_bytes_per_doc": 8,
+      "upper_violations": 0,
+      "times_ms": [
+        0.250093056820333,
+        0.21024199668318033,
+        0.20279292948544025,
+        0.19920198246836662,
+        0.1959620276466012
+      ]
+    },
+    {
+      "case": "ties",
+      "levels": 4,
+      "state_bytes_per_doc": 16,
+      "upper_violations": 0,
+      "times_ms": [
+        0.24344294797629118,
+        0.21060300059616566,
+        0.1991319004446268,
+        0.19739288836717606,
+        0.19456201698631048
+      ]
+    },
+    {
+      "case": "ties",
+      "levels": 8,
+      "state_bytes_per_doc": 32,
+      "upper_violations": 0,
+      "times_ms": [
+        0.23842300288379192,
+        0.20711193792521954,
+        0.19933306612074375,
+        0.19606202840805054,
+        0.19470194820314646
+      ]
+    }
+  ]
+}

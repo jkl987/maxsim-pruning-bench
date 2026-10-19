@@ -11,6 +11,7 @@ import sys
 import time
 import numpy as np
 import torch
+from maxsim_pruning.evidence import require
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'archive/source'))
@@ -23,8 +24,11 @@ args=ap.parse_args()
 torch.cuda.set_device(args.device)
 torch.backends.cuda.matmul.allow_tf32=False
 device=torch.device('cuda',args.device)
-rng=np.random.default_rng(20261019)
-n,c,dim,budget=1024,256,32,128
+config=json.loads((ROOT/'configs/validation.json').read_text())
+fixture=config['gpu_demo']
+rng=np.random.default_rng(config['seed'])
+n,c,dim,budget=(fixture[k] for k in ['documents','centroids','terms','budget'])
+require(dim==32,'Archived GPU kernels require 32 query terms')
 counts=rng.integers(1,33,size=n)
 off=np.concatenate(([0],np.cumsum(counts))).astype(np.int64)
 codes=rng.integers(0,c,size=off[-1],dtype=np.int32)
@@ -36,7 +40,8 @@ ivf=np.concatenate([np.array(p,dtype=np.int32) for p in postings])
 tensor=lambda x:torch.as_tensor(x,device=device)
 offsets,code_tensor,istart,posting=map(tensor,(off,codes,starts,ivf))
 rows=[]
-for case in ('random','negative','ties'):
+for case in fixture['cases']:
+    require(case in ('random','negative','ties'),'Unknown fixture case')
     cent=rng.uniform(-1,1,(c,dim)).astype(np.float32)
     if case=='negative':cent=-np.abs(cent)
     if case=='ties':cent[:]=0
@@ -45,27 +50,27 @@ for case in ('random','negative','ties'):
     lut=(cent@q.T).cpu().numpy().astype(np.float64)
     truth=np.array([lut[codes[off[i]:off[i+1]]].max(0).sum() for i in range(n)])
     cutoff=np.sort(truth)[-budget]
-    for levels in (2,4,8):
+    for levels in fixture['levels']:
         engine=Power32Frontier(cent,code_tensor,offsets,istart,posting,
-            budget,64,2,levels,programs=128,block=128,compact_final=False,unsorted_seed=True)
+            budget,fixture['prefix'],2,levels,programs=128,block=128,compact_final=False,unsorted_seed=True)
         ids,valid=engine(q,16,budget)
         torch.cuda.synchronize()
         upper=engine.upper.cpu().numpy().astype(np.float64)
         chosen=ids.cpu().numpy()
-        assert bool(valid.all()) and len(set(chosen.tolist()))==budget
-        assert np.all(upper>=truth), (case,levels,'upper')
+        require(bool(valid.all()) and len(set(chosen.tolist()))==budget,'Invalid returned candidates')
+        require(np.all(upper>=truth),f'{case}/{levels}: upper violation')
         # Float32 scoring may change near-ties; do not require arbitrary tied IDs.
-        assert set(np.flatnonzero(truth>cutoff+4e-4)) <= set(chosen.tolist())
-        assert np.all(truth[chosen]>=cutoff-4e-4)
+        require(set(np.flatnonzero(truth>cutoff+4e-4)) <= set(chosen.tolist()),'Strict cutoff miss')
+        require(np.all(truth[chosen]>=cutoff-4e-4),'Returned score below cutoff tolerance')
         times=[]
-        for _ in range(5):
+        for _ in range(fixture['repetitions']):
             torch.cuda.synchronize();t=time.perf_counter();engine(q,16,budget)
             torch.cuda.synchronize();times.append((time.perf_counter()-t)*1000)
         rows.append({'case':case,'levels':levels,'state_bytes_per_doc':engine.dbits.numel()*engine.dbits.element_size()//n,
             'upper_violations':int(np.sum(upper<truth)),'times_ms':times})
         del engine
 result={'scope':'Synthetic smoke test, no public-system speed claim','device':torch.cuda.get_device_name(),
-        'torch':torch.__version__,'cuda':torch.version.cuda,'results':rows}
+        'torch':torch.__version__,'cuda':torch.version.cuda,'config':config,'results':rows}
 text=json.dumps(result,indent=2)
 if args.output:args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(text+'\n')
 print(text)

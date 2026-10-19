@@ -41,6 +41,20 @@ class ReferenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             audit(np.ones(3), np.ones(3), 2, np.array([1, 1]))
 
+    def test_arithmetic_contract_and_integer_parameters(self):
+        for lut in (np.array([[1+2j]]),np.full((3,32),1e308)):
+            with self.assertRaises(ValueError):independent_upper(lut,[[0]])
+        for prefix in (True,1.5):
+            with self.assertRaises(ValueError):independent_upper(np.ones((2,2)),[[0]],prefix=prefix)
+        for budget in (True,1.5):
+            with self.assertRaises(ValueError):audit(np.ones(3),np.ones(3),budget)
+
+    def test_audit_detects_real_miss_and_false_survivor(self):
+        z=audit(np.array([3.,2.,1.]),np.array([3.,3.,3.]),2,np.array([1,2]))
+        self.assertEqual(z['strict_missing'],1)
+        self.assertEqual(z['selected_below_cutoff'],1)
+        self.assertEqual(z['false_survivors'],1)
+
 
 if __name__ == '__main__':
     unittest.main()

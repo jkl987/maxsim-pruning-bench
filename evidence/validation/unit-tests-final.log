@@ -1,0 +1,18 @@
+test_corruption_rejected_even_under_optimized_python (test_evidence.EvidenceTests.test_corruption_rejected_even_under_optimized_python) ... ok
+test_hybrid_aligns_sessions_and_preserves_query_unit (test_evidence.EvidenceTests.test_hybrid_aligns_sessions_and_preserves_query_unit) ... ok
+test_manifest_escape_rejected (test_evidence.EvidenceTests.test_manifest_escape_rejected) ... ok
+test_pairing_is_by_id_and_not_row_order (test_evidence.EvidenceTests.test_pairing_is_by_id_and_not_row_order) ... ok
+test_timing_and_query_validation (test_evidence.EvidenceTests.test_timing_and_query_validation) ... ok
+test_raw_and_npy_offsets_bitwise_and_source_unchanged (test_loading.LoadingTests.test_raw_and_npy_offsets_bitwise_and_source_unchanged) ... ok
+test_reject_writable_mapping_views_and_bad_target (test_loading.LoadingTests.test_reject_writable_mapping_views_and_bad_target) ... ok
+test_arithmetic_contract_and_integer_parameters (test_reference.ReferenceTests.test_arithmetic_contract_and_integer_parameters) ... ok
+test_audit_detects_real_miss_and_false_survivor (test_reference.ReferenceTests.test_audit_detects_real_miss_and_false_survivor) ... ok
+test_equal_boundaries_and_ties (test_reference.ReferenceTests.test_equal_boundaries_and_ties) ... ok
+test_invalid_inputs (test_reference.ReferenceTests.test_invalid_inputs) ... ok
+test_random_negative_duplicates_and_budgets (test_reference.ReferenceTests.test_random_negative_duplicates_and_budgets) ... ok
+test_zero_fields_and_top_fields (test_reference.ReferenceTests.test_zero_fields_and_top_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.081s
+
+OK

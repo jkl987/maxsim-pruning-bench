@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "bytes": 524288,
+  "pinned": true,
+  "bitwise_parity": true,
+  "cuda_roundtrip": true,
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "torch": "2.11.0+cu128",
+  "scope": "Correctness only; no new RSS or speedup measurement"
+}

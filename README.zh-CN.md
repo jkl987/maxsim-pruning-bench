@@ -3,9 +3,13 @@
 本仓库整理独立分箱实现、正确性审计、原始计时，以及条件摘要路线的负结果。
 它是研究复现材料，不是生产检索引擎；不主张新的 SOTA 或论文级算法创新。
 
+[配对统计与三张图](docs/RESULTS.md) · [独立内存加载工具](docs/LOADING.md)
+
 ## 无需服务器即可运行
 
 ```sh
+git clone https://github.com/jkl987/maxsim-pruning-bench.git
+cd maxsim-pruning-bench
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install -e .
@@ -16,6 +20,22 @@ python scripts/recompute.py
 
 前三项验证可安装性和边界正确性；CPU 示例展示 8B、16B、32B 状态。
 结果重算会核验 70 个归档文件的 SHA256，然后从逐查询原始计时恢复表格。
+新核验不会被 `python -O` 关闭，并检查非正常计时、查询重复/错配、状态预算和
+记录中的正确性失败。置信区间以查询为重采样单位，不把多次重复当成新查询。
+
+生成含三张图的报告：
+
+```sh
+python -m pip install -e '.[report]'
+python scripts/render_report.py --output run-output/report
+```
+
+打开输出目录的 `index.html`。图中区分正式计时、独立 profiler 子样本，以及
+不能作为部署速度的缓存 oracle。旧证据与失败源码的哈希不变。
+
+新增 `maxsim_pruning.loading.copy_pinned_source`，支持带文件头偏移的只读 `.npy`
+映射，拒绝可写映射和含糊的切片视图。已做 CPU 字节一致性与真实 CUDA 传输验证；
+本次没有重新测量加载期内存降幅，不能把历史 39.5% 当作新版本的普遍保证。
 
 有 CUDA 环境时，可安装匹配机器的 PyTorch，再安装 `.[gpu]`，运行：
 

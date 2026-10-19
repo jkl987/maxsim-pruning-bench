@@ -4,12 +4,17 @@ Threshold equality sets the bit. A state's first set bit selects the preceding
 upper endpoint; an all-zero field selects the final (lowest) threshold.
 """
 import numpy as np
+from numbers import Integral
 
 
 def validate(lut, documents):
+    if np.iscomplexobj(lut):
+        raise ValueError("Complex LUT values are unsupported")
     lut = np.asarray(lut, dtype=np.float64)
     if lut.ndim != 2 or min(lut.shape) == 0 or not np.isfinite(lut).all():
         raise ValueError('LUT must be a nonempty finite matrix [centroids, terms]')
+    if np.max(np.abs(lut)) > np.finfo(np.float64).max / (4*lut.shape[1]):
+        raise ValueError("LUT magnitude exceeds the reference arithmetic contract")
     docs = []
     for doc in documents:
         d = np.asarray(doc)
@@ -30,7 +35,8 @@ def coarse_scores(lut, documents):
 
 def independent_upper(lut, documents, levels=4, prefix=512):
     lut, docs = validate(lut, documents)
-    if levels not in (2, 4, 8) or prefix < 1:
+    if (not isinstance(levels, Integral) or levels not in (2, 4, 8)
+            or isinstance(prefix, bool) or not isinstance(prefix, Integral) or prefix < 1):
         raise ValueError('levels must be 2, 4 or 8; prefix must be positive')
     prefix = min(prefix, len(lut))
     top = np.sort(lut, axis=0)[::-1][:prefix]
@@ -53,7 +59,11 @@ def independent_upper(lut, documents, levels=4, prefix=512):
 
 
 def audit(true_scores, upper, budget, selected=None):
+    if isinstance(budget, bool) or not isinstance(budget, Integral):
+        raise ValueError("budget must be an integer")
     truth, bounds = np.asarray(true_scores), np.asarray(upper)
+    if np.iscomplexobj(truth) or np.iscomplexobj(bounds):
+        raise ValueError("Complex scores are unsupported")
     if truth.ndim != 1 or truth.shape != bounds.shape or not 1 <= budget <= len(truth):
         raise ValueError('Incompatible scores, bounds or budget')
     if not np.isfinite(truth).all() or not np.isfinite(bounds).all():
